@@ -1,83 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Girl With the Pretty Face</title>
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
-      color: white;
-      font-family: "Georgia", serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      animation: fadeIn 1.5s ease forwards;
-    }
-
-    p {
-      font-size: 1.4rem;
-      max-width: 85%;
-      line-height: 1.6;
-      opacity: 0;
-      animation: fadeIn 2.5s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .next-btn {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      background: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-      animation: fadeIn 3.5s ease forwards;
-    }
-
-    .next-btn:hover {
-      background: #6bdc72;
-      transform: scale(1.05);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <h1>The Girl With the Pretty Face</h1>
+    <div id="app">
+        <h1>My App</h1>
 
-  <p>
-    In a place called The Nomad, in Ponce City’s warm embrace,<br>
-    I saw a girl with black hair and the prettiest face.<br><br>
+        <button id="actionBtn">Run Action</button>
 
-    Her eyes held stories — soft, wandering, free,<br>
-    A nomadic spirit that drifted right into me.<br><br>
+        <div id="output"></div>
+    </div>
 
-    I hope it isn’t rude, or bold, or out of place,<br>
-    But I couldn’t help writing a poem about her grace.
-  </p>
-
-  <button class="next-btn" onclick="window.location.href='page2.html'">
-    Continue →
-  </button>
-
+    <script src="app.js"></script>
 </body>
 </html>
