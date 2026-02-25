@@ -3,28 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pretty Face — Interactive Poem</title>
+    <title>The Girl With the Pretty Face</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="candyRain"></div>
-    <div id="floatingItems"></div>
+    <h1 id="title">The Girl With the Pretty Face</h1>
 
-    <div id="app">
-        <h1 class="title">Pretty Face</h1>
+    <div id="poemContainer">
+        <div id="poemPage" class="page"></div>
+    </div>
 
-        <div id="poemBox">
-            <p id="poemText"></p>
-        </div>
+    <button id="nextBtn">Next Page</button>
 
-        <button id="nextBtn">Next</button>
-
-        <div id="finalFlower" class="hidden">
-            <div class="flower"></div>
-            <p class="keepText">A flower for you to keep forever.</p>
-            <a id="downloadLink" href="#" class="downloadBtn">Download Your Poem</a>
-        </div>
+    <div id="finalFlower" class="hidden">
+        <img src="flower.png" alt="Flower" class="flower-img">
+        <a id="downloadLink" href="poem.txt" download="PrettyFacePoem.txt">Save Poem</a>
     </div>
 
     <script src="app.js"></script>
