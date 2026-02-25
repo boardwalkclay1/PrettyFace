@@ -1,7 +1,5 @@
 /* ---------------------------------------------------------
-   POEM ENGINE — CINEMATIC EDITION
-   Smooth fades, layered particles, floating emojis,
-   candy rain, soft pulses, and a magical final flower.
+   SAFE, MILITANT, CRASH-PROOF POEM ENGINE
 --------------------------------------------------------- */
 
 const poemPages = [
@@ -26,83 +24,69 @@ const floatingItems = document.getElementById("floatingItems");
 const finalFlower = document.getElementById("finalFlower");
 
 /* ---------------------------------------------------------
-   PAGE TRANSITION
-   Smooth fade-out → text swap → soft fade-in
-   + particle burst for emotional punctuation
+   SAFE PAGE RENDER
 --------------------------------------------------------- */
 function showPage() {
-    poemText.classList.add("fadeOut");
+    if (!poemText) return;
 
+    poemText.classList.remove("show");
     setTimeout(() => {
         poemText.textContent = poemPages[currentPage];
-        poemText.classList.remove("fadeOut");
-        poemText.classList.add("fadeIn");
+        poemText.classList.add("show");
+    }, 200);
 
-        // Particles for emotional resonance
-        dropCandy();
-        floatItem();
-        pulseText();
-    }, 350);
+    dropCandy();
+    floatItem();
 }
 
 /* ---------------------------------------------------------
-   TEXT PULSE — gentle breathing effect
---------------------------------------------------------- */
-function pulseText() {
-    poemText.classList.add("pulse");
-    setTimeout(() => poemText.classList.remove("pulse"), 1200);
-}
-
-/* ---------------------------------------------------------
-   CANDY RAIN — smoother, layered, randomized
+   CANDY DROP
 --------------------------------------------------------- */
 function dropCandy() {
+    if (!candyRain) return;
+
     const candy = document.createElement("div");
-    candy.classList.add("candyDrop");
+    candy.className = "falling";
     candy.textContent = "🍬";
-
     candy.style.left = Math.random() * 100 + "vw";
-    candy.style.fontSize = (1.2 + Math.random() * 1.5) + "rem";
-    candy.style.animationDuration = (3 + Math.random() * 2) + "s";
-
     candyRain.appendChild(candy);
-    setTimeout(() => candy.remove(), 6000);
+
+    setTimeout(() => candy.remove(), 5000);
 }
 
 /* ---------------------------------------------------------
-   FLOATING ITEMS — teddy, flowers, bouquets
-   Now with drift + fade + scale animation
+   FLOATING ITEMS
 --------------------------------------------------------- */
 function floatItem() {
+    if (!floatingItems) return;
+
     const items = ["🧸", "🌸", "💐"];
     const el = document.createElement("div");
-
-    el.classList.add("floatItem");
+    el.className = "falling";
     el.textContent = items[Math.floor(Math.random() * items.length)];
-
-    el.style.left = Math.random() * 80 + "vw";
-    el.style.fontSize = (1.5 + Math.random() * 1.5) + "rem";
-
+    el.style.left = Math.random() * 100 + "vw";
     floatingItems.appendChild(el);
-    setTimeout(() => el.remove(), 3500);
+
+    setTimeout(() => el.remove(), 5000);
 }
 
 /* ---------------------------------------------------------
-   NEXT BUTTON LOGIC
+   NEXT BUTTON
 --------------------------------------------------------- */
-nextBtn.addEventListener("click", () => {
-    currentPage++;
+if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        currentPage++;
 
-    if (currentPage >= poemPages.length) {
-        nextBtn.classList.add("fadeOut");
-        setTimeout(() => nextBtn.style.display = "none", 400);
+        if (currentPage >= poemPages.length) {
+            nextBtn.style.display = "none";
 
-        finalFlower.classList.remove("hidden");
-        finalFlower.classList.add("revealFlower");
-    } else {
-        showPage();
-    }
-});
+            if (finalFlower) {
+                finalFlower.classList.remove("hidden");
+            }
+        } else {
+            showPage();
+        }
+    });
+}
 
-/* Start the experience */
 showPage();
