@@ -1,100 +1,102 @@
 body {
     margin: 0;
     padding: 0;
-    background: #0d0d0d;
+    background: #0a0a0a;
     color: #fff;
     font-family: "Helvetica", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     overflow: hidden;
 }
 
-#app {
-    width: 90%;
-    max-width: 600px;
+#title {
     text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-.title {
     font-size: 32px;
-    margin-bottom: 30px;
+    margin-top: 20px;
     letter-spacing: 2px;
+    position: fixed;
+    top: 10px;
+    width: 100%;
+    z-index: 20;
 }
 
-#poemBox {
-    min-height: 200px;
-    padding: 20px;
-    border: 1px solid #444;
-    border-radius: 10px;
+#poemContainer {
+    position: absolute;
+    top: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.page {
+    width: 80%;
+    max-width: 700px;
+    min-height: 250px;
+    padding: 30px;
     background: rgba(255,255,255,0.05);
-    margin-bottom: 20px;
-}
-
-#poemText {
-    font-size: 20px;
-    line-height: 1.5;
+    border-radius: 12px;
+    border: 1px solid #444;
+    font-size: 22px;
+    line-height: 1.6;
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
-button, .downloadBtn {
-    padding: 12px 25px;
+.page.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#nextBtn {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 30px;
     background: #fff;
     color: #000;
     border: none;
-    border-radius: 6px;
-    font-size: 18px;
+    border-radius: 8px;
+    font-size: 20px;
     cursor: pointer;
-    font-weight: bold;
-    text-decoration: none;
+    z-index: 20;
 }
 
-button:hover, .downloadBtn:hover {
-    background: #ddd;
-}
-
-#candyRain div {
-    position: absolute;
+.falling {
+    position: fixed;
     top: -50px;
-    font-size: 24px;
-    animation: fall 4s linear infinite;
+    font-size: 30px;
+    animation: fall 4s linear forwards;
+    z-index: 5;
 }
 
 @keyframes fall {
     to {
-        transform: translateY(120vh);
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
     }
 }
 
-#floatingItems img {
-    position: absolute;
-    width: 60px;
-    animation: floatUp 3s ease-out forwards;
-}
-
-@keyframes floatUp {
-    from { transform: translateY(40px); opacity: 0; }
-    to { transform: translateY(-40px); opacity: 1; }
-}
-
 #finalFlower {
-    margin-top: 40px;
+    position: fixed;
+    bottom: 80px;
+    width: 100%;
+    text-align: center;
 }
 
-.flower {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 20px;
-    background: pink;
-    border-radius: 50%;
-    box-shadow: 0 0 20px pink;
+.flower-img {
+    width: 200px;
+    animation: glow 3s infinite alternate;
 }
 
-.keepText {
-    margin-bottom: 20px;
-    font-size: 18px;
+@keyframes glow {
+    from { filter: drop-shadow(0 0 5px #ff69b4); }
+    to { filter: drop-shadow(0 0 25px #ff69b4); }
+}
+
+#downloadLink {
+    display: block;
+    margin-top: 20px;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: underline;
 }
