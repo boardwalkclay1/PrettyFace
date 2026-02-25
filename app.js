@@ -1,3 +1,9 @@
+/* ---------------------------------------------------------
+   POEM ENGINE — CINEMATIC EDITION
+   Smooth fades, layered particles, floating emojis,
+   candy rain, soft pulses, and a magical final flower.
+--------------------------------------------------------- */
+
 const poemPages = [
     "She stood there at the Nomad counter, calm like she’d already figured out the world. Her presence didn’t ask for attention; it simply earned it. Even the air around her felt softer.",
     "Her pretty face wasn’t loud or dramatic — it was gentle, like a quiet sunrise. The kind of beauty that doesn’t try to impress anyone. It just exists, and somehow that’s enough.",
@@ -19,47 +25,84 @@ const candyRain = document.getElementById("candyRain");
 const floatingItems = document.getElementById("floatingItems");
 const finalFlower = document.getElementById("finalFlower");
 
+/* ---------------------------------------------------------
+   PAGE TRANSITION
+   Smooth fade-out → text swap → soft fade-in
+   + particle burst for emotional punctuation
+--------------------------------------------------------- */
 function showPage() {
-    poemText.style.opacity = 0;
+    poemText.classList.add("fadeOut");
+
     setTimeout(() => {
         poemText.textContent = poemPages[currentPage];
-        poemText.style.opacity = 1;
-    }, 300);
+        poemText.classList.remove("fadeOut");
+        poemText.classList.add("fadeIn");
 
-    dropCandy();
-    floatItem();
+        // Particles for emotional resonance
+        dropCandy();
+        floatItem();
+        pulseText();
+    }, 350);
 }
 
+/* ---------------------------------------------------------
+   TEXT PULSE — gentle breathing effect
+--------------------------------------------------------- */
+function pulseText() {
+    poemText.classList.add("pulse");
+    setTimeout(() => poemText.classList.remove("pulse"), 1200);
+}
+
+/* ---------------------------------------------------------
+   CANDY RAIN — smoother, layered, randomized
+--------------------------------------------------------- */
 function dropCandy() {
     const candy = document.createElement("div");
+    candy.classList.add("candyDrop");
     candy.textContent = "🍬";
-    candy.style.left = Math.random() * 100 + "vw";
-    candy.style.animationDuration = (3 + Math.random() * 2) + "s";
-    candyRain.appendChild(candy);
 
-    setTimeout(() => candy.remove(), 5000);
+    candy.style.left = Math.random() * 100 + "vw";
+    candy.style.fontSize = (1.2 + Math.random() * 1.5) + "rem";
+    candy.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+    candyRain.appendChild(candy);
+    setTimeout(() => candy.remove(), 6000);
 }
 
+/* ---------------------------------------------------------
+   FLOATING ITEMS — teddy, flowers, bouquets
+   Now with drift + fade + scale animation
+--------------------------------------------------------- */
 function floatItem() {
     const items = ["🧸", "🌸", "💐"];
-    const img = document.createElement("img");
-    img.src = "";
-    img.alt = items[Math.floor(Math.random() * items.length)];
-    img.textContent = img.alt;
-    img.style.left = Math.random() * 80 + "vw";
-    floatingItems.appendChild(img);
+    const el = document.createElement("div");
 
-    setTimeout(() => img.remove(), 3000);
+    el.classList.add("floatItem");
+    el.textContent = items[Math.floor(Math.random() * items.length)];
+
+    el.style.left = Math.random() * 80 + "vw";
+    el.style.fontSize = (1.5 + Math.random() * 1.5) + "rem";
+
+    floatingItems.appendChild(el);
+    setTimeout(() => el.remove(), 3500);
 }
 
+/* ---------------------------------------------------------
+   NEXT BUTTON LOGIC
+--------------------------------------------------------- */
 nextBtn.addEventListener("click", () => {
     currentPage++;
+
     if (currentPage >= poemPages.length) {
-        nextBtn.style.display = "none";
+        nextBtn.classList.add("fadeOut");
+        setTimeout(() => nextBtn.style.display = "none", 400);
+
         finalFlower.classList.remove("hidden");
+        finalFlower.classList.add("revealFlower");
     } else {
         showPage();
     }
 });
 
+/* Start the experience */
 showPage();
