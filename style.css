@@ -227,3 +227,21 @@ body::after {
 #downloadLink:hover {
     opacity: 0.6;
 }
+/* Bigger text on phones */
+@media (max-width: 600px) {
+    .page {
+        font-size: 28px;
+        line-height: 1.9;
+        padding: 36px;
+    }
+
+    #title {
+        font-size: 30px;
+        letter-spacing: 5px;
+    }
+
+    #nextBtn {
+        font-size: 20px;
+        padding: 18px 36px;
+    }
+}
