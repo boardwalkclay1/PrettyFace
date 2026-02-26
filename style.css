@@ -5,15 +5,15 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: #000;          /* hard black */
-    color: #e8c6ff;            /* soft neon text */
+    background: #000;
+    color: #e8c6ff;
     font-family: "Helvetica", sans-serif;
     overflow: hidden;
     letter-spacing: 0.7px;
     position: relative;
 }
 
-/* optional grain, very subtle, no white wash */
+/* Subtle nebula grain */
 body::after {
     content: "";
     position: fixed;
@@ -67,34 +67,30 @@ body::after {
     max-width: 780px;
     min-height: 260px;
     padding: 40px;
-    background: rgba(0,0,0,0.92);                 /* almost pure black */
+    background: rgba(0,0,0,0.92);
     border-radius: 24px;
     border: 1px solid rgba(180,0,255,0.5);
     font-size: 22px;
     line-height: 1.8;
     opacity: 0;
     transform: translateY(60px) scale(0.9);
-    transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
+    transition: opacity 0.9s ease, transform 0.9s ease;
     backdrop-filter: blur(14px);
     box-shadow: 0 0 50px rgba(180,0,255,0.3);
 }
 
-/* FLOAT IN */
 .page.page-in {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* FLOAT OUT */
 .page.page-out {
     opacity: 0;
     transform: translateY(-60px) scale(0.9);
 }
 
 /* ---------------------------------------------------------
-   NEXT BUTTON — dark core
+   NEXT BUTTON
 --------------------------------------------------------- */
 #nextBtn {
     position: fixed;
@@ -102,7 +98,7 @@ body::after {
     left: 50%;
     transform: translateX(-50%);
     padding: 16px 40px;
-    background: #050005;              /* dark, not gray */
+    background: #050005;
     color: #e8c6ff;
     border: 2px solid #b300ff;
     border-radius: 18px;
@@ -120,7 +116,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   FALLING ITEMS — candy, bears, flowers
+   FALLING ITEMS
 --------------------------------------------------------- */
 #candyRain,
 #floatingItems {
@@ -139,18 +135,12 @@ body::after {
 }
 
 @keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(150vh) rotate(360deg) scale(1.5);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(150vh) rotate(360deg) scale(1.5); opacity: 0; }
 }
 
 /* ---------------------------------------------------------
-   FINAL FLOWER — optional
+   FINAL FLOWER
 --------------------------------------------------------- */
 #finalFlower {
     position: fixed;
@@ -158,10 +148,6 @@ body::after {
     width: 100%;
     text-align: center;
     z-index: 15;
-}
-
-.hidden {
-    display: none;
 }
 
 .cssFlower {
@@ -227,21 +213,51 @@ body::after {
 #downloadLink:hover {
     opacity: 0.6;
 }
-/* Bigger text on phones */
+
+/* ---------------------------------------------------------
+   MOBILE BOOST — BIGGER EVERYTHING
+--------------------------------------------------------- */
 @media (max-width: 600px) {
-    .page {
-        font-size: 28px;
-        line-height: 1.9;
-        padding: 36px;
-    }
 
     #title {
+        font-size: 38px;
+        letter-spacing: 7px;
+        top: 18px;
+    }
+
+    .page {
         font-size: 30px;
-        letter-spacing: 5px;
+        line-height: 2.0;
+        padding: 34px;
+        border-radius: 22px;
     }
 
     #nextBtn {
-        font-size: 20px;
-        padding: 18px 36px;
+        font-size: 24px;
+        padding: 20px 44px;
+        bottom: 40px;
+    }
+
+    .falling {
+        font-size: 52px;
+    }
+
+    .cssFlower {
+        width: 240px;
+        height: 240px;
+    }
+
+    .cssFlower .petal {
+        width: 100px;
+        height: 160px;
+        top: 28px;
+        left: 70px;
+    }
+
+    .cssFlower .center {
+        width: 120px;
+        height: 120px;
+        top: 60px;
+        left: 60px;
     }
 }
