@@ -12,14 +12,20 @@ body {
     position: relative;
 }
 
-/* Film grain — smoother, cleaner, more realistic */
+/* Film grain — pure CSS noise (no image needed) */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: url("grain.png") repeat;
-    opacity: 0.10;
+    background: repeating-radial-gradient(
+        circle,
+        rgba(255,255,255,0.015) 0,
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    opacity: 0.12;
     mix-blend-mode: overlay;
     z-index: 3;
 }
@@ -132,7 +138,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   FINAL FLOWER — premium glow, magical pulse
+   FINAL FLOWER — pure CSS flower, glowing, no image needed
 --------------------------------------------------------- */
 #finalFlower {
     position: fixed;
@@ -142,11 +148,48 @@ body::after {
     z-index: 15;
 }
 
-.flower-img {
-    width: 250px;
-    animation: glow 3.2s infinite alternate, floatUp 4.5s ease-in-out infinite;
+/* The flower is built from circles — no PNG */
+.cssFlower {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    animation: floatUp 4.5s ease-in-out infinite, glow 3s infinite alternate;
 }
 
+/* Petals */
+.cssFlower .petal {
+    position: absolute;
+    width: 70px;
+    height: 120px;
+    background: radial-gradient(circle at 40% 40%, #ff8acb, #ff4fa8);
+    border-radius: 50% 50% 40% 40%;
+    top: 30px;
+    left: 55px;
+    transform-origin: bottom center;
+}
+
+/* 6 petals rotated around center */
+.cssFlower .p1 { transform: rotate(0deg); }
+.cssFlower .p2 { transform: rotate(60deg); }
+.cssFlower .p3 { transform: rotate(120deg); }
+.cssFlower .p4 { transform: rotate(180deg); }
+.cssFlower .p5 { transform: rotate(240deg); }
+.cssFlower .p6 { transform: rotate(300deg); }
+
+/* Center */
+.cssFlower .center {
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    background: radial-gradient(circle, #ffd6f0, #ff8acb);
+    border-radius: 50%;
+    top: 48px;
+    left: 48px;
+    box-shadow: 0 0 25px rgba(255,105,180,0.8);
+}
+
+/* Glow + float */
 @keyframes glow {
     from { filter: drop-shadow(0 0 14px #ff69b4); }
     to { filter: drop-shadow(0 0 45px #ff69b4); }
