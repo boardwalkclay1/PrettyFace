@@ -1,18 +1,18 @@
 /* ---------------------------------------------------------
-   GLOBAL — PURE BLACK, CINEMATIC BLOOM
+   GLOBAL — PURE BLACK, NEON PINK CINEMA
 --------------------------------------------------------- */
 body {
     margin: 0;
     padding: 0;
-    background: #000; /* PURE BLACK */
-    color: #fff;
+    background: #000; /* pure black */
+    color: #f5f5f5;   /* soft off-white text, not UI blocks */
     font-family: "Helvetica", sans-serif;
     overflow: hidden;
     letter-spacing: 0.65px;
     position: relative;
 }
 
-/* Film grain — subtle, cinematic */
+/* Very subtle grain, not white UI */
 body::after {
     content: "";
     position: fixed;
@@ -20,35 +20,36 @@ body::after {
     pointer-events: none;
     background: repeating-radial-gradient(
         circle,
-        rgba(255,255,255,0.01) 0,
-        rgba(255,255,255,0.01) 1px,
+        rgba(255,255,255,0.015) 0,
+        rgba(255,255,255,0.015) 1px,
         transparent 1px,
-        transparent 3px
+        transparent 4px
     );
-    opacity: 0.08;
+    opacity: 0.06;
     mix-blend-mode: soft-light;
-    z-index: 3;
+    z-index: 1;
 }
 
 /* ---------------------------------------------------------
-   TITLE — floating, glowing, cinematic
+   TITLE — neon pink glow, no white
 --------------------------------------------------------- */
 #title {
     text-align: center;
-    font-size: 42px;
+    font-size: 40px;
     margin-top: 20px;
-    letter-spacing: 8px;
+    letter-spacing: 6px;
     position: fixed;
-    top: 20px;
+    top: 14px;
     width: 100%;
     z-index: 20;
-    text-shadow: 0 0 30px rgba(255, 105, 180, 1);
+    color: #ffb7e6;
+    text-shadow: 0 0 26px rgba(255, 105, 180, 1);
     animation: titleFloat 5s ease-in-out infinite alternate;
 }
 
 @keyframes titleFloat {
     from { transform: translateY(0); }
-    to { transform: translateY(16px); }
+    to { transform: translateY(14px); }
 }
 
 /* ---------------------------------------------------------
@@ -56,31 +57,31 @@ body::after {
 --------------------------------------------------------- */
 #poemContainer {
     position: absolute;
-    top: 180px;
+    top: 160px;
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 10;
+    z-index: 5;
 }
 
 /* ---------------------------------------------------------
-   PAGE — cinematic glass card
+   PAGE — dark glass, no white card
 --------------------------------------------------------- */
 .page {
     width: 80%;
-    max-width: 760px;
-    min-height: 280px;
-    padding: 50px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 22px;
-    border: 1px solid rgba(255,255,255,0.12);
+    max-width: 720px;
+    min-height: 260px;
+    padding: 46px;
+    background: rgba(10,10,10,0.9); /* dark, not white */
+    border-radius: 20px;
+    border: 1px solid rgba(255,105,180,0.45); /* pink edge */
     font-size: 24px;
-    line-height: 1.8;
+    line-height: 1.78;
     opacity: 0;
-    transform: translateY(60px) scale(0.92);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 0 60px rgba(255,255,255,0.05);
+    transform: translateY(60px) scale(0.93);
+    transition: opacity 1.25s ease, transform 1.25s ease;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 40px rgba(255,105,180,0.25); /* pink glow */
 }
 
 .page.show {
@@ -89,29 +90,30 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   NEXT BUTTON — bright, cinematic
+   NEXT BUTTON — dark with neon edge, no white fill
 --------------------------------------------------------- */
 #nextBtn {
     position: fixed;
-    bottom: 70px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 22px 48px;
-    background: #fff;
-    color: #000;
-    border: none;
-    border-radius: 18px;
-    font-size: 22px;
+    padding: 18px 40px;
+    background: #050505; /* dark */
+    color: #ffb7e6;      /* soft pink text */
+    border: 1px solid #ff69b4;
+    border-radius: 16px;
+    font-size: 21px;
     cursor: pointer;
     z-index: 20;
     font-weight: bold;
-    box-shadow: 0 0 40px rgba(255,255,255,0.8);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 26px rgba(255,105,180,0.6);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 #nextBtn:hover {
-    transform: translateX(-50%) scale(1.12);
-    box-shadow: 0 0 60px rgba(255,255,255,1);
+    transform: translateX(-50%) scale(1.08);
+    background: #0b0b0b;
+    box-shadow: 0 0 40px rgba(255,105,180,0.9);
 }
 
 /* ---------------------------------------------------------
@@ -120,10 +122,10 @@ body::after {
 .falling {
     position: fixed;
     top: -80px;
-    font-size: 42px;
+    font-size: 40px;
     animation: fall 5.2s linear forwards;
-    z-index: 6;
-    filter: drop-shadow(0 0 18px rgba(255,255,255,0.6));
+    z-index: 4;
+    filter: drop-shadow(0 0 16px rgba(255,105,180,0.7));
 }
 
 @keyframes fall {
@@ -132,17 +134,17 @@ body::after {
         opacity: 1;
     }
     100% {
-        transform: translateY(150vh) rotate(360deg) scale(1.5);
+        transform: translateY(140vh) rotate(360deg) scale(1.5);
         opacity: 0;
     }
 }
 
 /* ---------------------------------------------------------
-   FINAL FLOWER — glowing CSS flower
+   FINAL FLOWER — same, but on black
 --------------------------------------------------------- */
 #finalFlower {
     position: fixed;
-    bottom: 130px;
+    bottom: 120px;
     width: 100%;
     text-align: center;
     z-index: 15;
@@ -154,20 +156,20 @@ body::after {
 
 .cssFlower {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
     margin: 0 auto;
     animation: floatUp 4.8s ease-in-out infinite, glow 3.2s infinite alternate;
 }
 
 .cssFlower .petal {
     position: absolute;
-    width: 80px;
-    height: 130px;
+    width: 75px;
+    height: 125px;
     background: radial-gradient(circle at 40% 40%, #ff9ad3, #ff4fa8);
     border-radius: 50% 50% 42% 42%;
-    top: 30px;
-    left: 60px;
+    top: 28px;
+    left: 58px;
     transform-origin: bottom center;
 }
 
@@ -180,38 +182,38 @@ body::after {
 
 .cssFlower .center {
     position: absolute;
-    width: 95px;
-    height: 95px;
+    width: 90px;
+    height: 90px;
     background: radial-gradient(circle, #ffe0f5, #ff8acb);
     border-radius: 50%;
-    top: 52px;
-    left: 52px;
-    box-shadow: 0 0 35px rgba(255,105,180,0.9);
+    top: 50px;
+    left: 50px;
+    box-shadow: 0 0 30px rgba(255,105,180,0.85);
 }
 
 @keyframes glow {
-    from { filter: drop-shadow(0 0 18px #ff69b4); }
-    to { filter: drop-shadow(0 0 55px #ff69b4); }
+    from { filter: drop-shadow(0 0 16px #ff69b4); }
+    to { filter: drop-shadow(0 0 50px #ff69b4); }
 }
 
 @keyframes floatUp {
     from { transform: translateY(0); }
-    to { transform: translateY(-18px); }
+    to { transform: translateY(-16px); }
 }
 
 /* ---------------------------------------------------------
-   DOWNLOAD LINK
+   DOWNLOAD LINK — no white, just soft text
 --------------------------------------------------------- */
 #downloadLink {
     display: block;
-    margin-top: 32px;
-    color: #fff;
+    margin-top: 30px;
+    color: #ffb7e6;
     font-size: 20px;
     text-decoration: underline;
-    text-shadow: 0 0 20px rgba(255,255,255,0.6);
+    text-shadow: 0 0 18px rgba(255,105,180,0.6);
     transition: opacity 0.3s ease;
 }
 
 #downloadLink:hover {
-    opacity: 0.5;
+    opacity: 0.6;
 }
