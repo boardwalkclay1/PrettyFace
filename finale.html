@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
     <title>Pretty Face — Finale</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -19,12 +20,79 @@
         <div class="center"></div>
     </div>
 
-    <a id="downloadLink" href="poem.txt" download="PrettyFacePoem.txt">Save Poem</a>
+    <!-- REAL DOWNLOAD BUTTON -->
+    <a id="downloadLink">Save Poem</a>
+
+    <!-- INSTAGRAM -->
+    <div id="instaBox">
+        <a href="https://instagram.com/boardwalk_clay" target="_blank">@boardwalk_clay</a>
+    </div>
 </div>
 
 <div id="candyRain"></div>
 <div id="floatingItems"></div>
 
 <script src="app.js"></script>
+
+<script>
+/* ---------------------------------------------------------
+   REAL POEM CONTENT — downloaded as a file
+--------------------------------------------------------- */
+const poemTextFile = `
+She stood there at the Nomad counter, calm like she’d already figured out the world. Her presence didn’t ask for attention; it simply earned it. Even the air around her felt softer.
+
+Her pretty face wasn’t loud or dramatic — it was gentle, like a quiet sunrise. The kind of beauty that doesn’t try to impress anyone. It just exists, and somehow that’s enough.
+
+She moved with a rhythm that didn’t rush or force anything. Every gesture felt intentional without being heavy. It made people slow down without realizing why.
+
+Her eyes carried a calm confidence, like she trusted herself even on the busiest days. There was warmth in the way she looked at the world. It made the store feel less like a store and more like a moment.
+
+Her smile wasn’t something she threw around — it was something she gave. And when she did, it felt like the room brightened a little. Not dramatically, just enough to notice.
+
+She had a softness that didn’t make her fragile. It made her real, grounded, and steady. The kind of softness people remember.
+
+Her presence wasn’t about looks alone; it was the energy she carried. A quiet strength wrapped in gentleness. A balance most people never learn.
+
+She didn’t need to speak loudly to be heard. Her calmness did the talking for her. And somehow that said more than words.
+
+She made ordinary moments feel a little more meaningful. Not because she tried — but because she was simply herself. And that was enough to shift the whole atmosphere.
+
+If she ever wondered whether anyone noticed her light, this app exists to say yes. Not in a dramatic way, but in a sincere one. She’s unforgettable in the quietest, sweetest way.
+`;
+
+/* ---------------------------------------------------------
+   CREATE DOWNLOAD FILE ON CLICK
+--------------------------------------------------------- */
+document.getElementById("downloadLink").addEventListener("click", () => {
+    const blob = new Blob([poemTextFile], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "PrettyFacePoem.txt";
+    a.click();
+
+    URL.revokeObjectURL(url);
+});
+</script>
+
+<style>
+/* Instagram styling */
+#instaBox {
+    margin-top: 20px;
+}
+
+#instaBox a {
+    color: #d38aff;
+    font-size: 20px;
+    text-decoration: none;
+    text-shadow: 0 0 20px #b300ff;
+}
+
+#instaBox a:hover {
+    opacity: 0.6;
+}
+</style>
+
 </body>
 </html>
