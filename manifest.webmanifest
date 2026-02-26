@@ -1,0 +1,16 @@
+{
+  "name": "The Girl With the Pretty Face",
+  "short_name": "PrettyFace",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "icons/pretty.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
