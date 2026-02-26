@@ -1,18 +1,18 @@
 /* ---------------------------------------------------------
-   GLOBAL — PURE BLACK, NEON PINK CINEMA
+   GLOBAL — NEBULA DRIFT (deep black, cosmic glow)
 --------------------------------------------------------- */
 body {
     margin: 0;
     padding: 0;
-    background: #000; /* PURE BLACK */
-    color: #ffb7e6;   /* soft neon-pink text */
+    background: #000;
+    color: #e8c6ff; /* lavender nebula text */
     font-family: "Helvetica", sans-serif;
     overflow: hidden;
-    letter-spacing: 0.65px;
+    letter-spacing: 0.7px;
     position: relative;
 }
 
-/* Subtle grain — stays BLACK, no white haze */
+/* Cosmic grain shimmer */
 body::after {
     content: "";
     position: fixed;
@@ -20,36 +20,36 @@ body::after {
     pointer-events: none;
     background: repeating-radial-gradient(
         circle,
-        rgba(255,105,180,0.03) 0,
-        rgba(255,105,180,0.03) 1px,
+        rgba(180, 0, 255, 0.03) 0,
+        rgba(180, 0, 255, 0.03) 1px,
         transparent 1px,
-        transparent 4px
+        transparent 5px
     );
-    opacity: 0.05;
+    opacity: 0.07;
     mix-blend-mode: screen;
     z-index: 1;
 }
 
 /* ---------------------------------------------------------
-   TITLE — neon pink glow, floating
+   TITLE — cosmic bloom, slow drift
 --------------------------------------------------------- */
 #title {
     text-align: center;
-    font-size: 42px;
+    font-size: 44px;
     margin-top: 20px;
-    letter-spacing: 8px;
+    letter-spacing: 10px;
     position: fixed;
-    top: 20px;
+    top: 30px;
     width: 100%;
     z-index: 20;
-    color: #ff8acb;
-    text-shadow: 0 0 30px #ff4fa8, 0 0 60px #ff4fa8;
-    animation: titleFloat 5s ease-in-out infinite alternate;
+    color: #d38aff;
+    text-shadow: 0 0 40px #b300ff, 0 0 80px #b300ff;
+    animation: titleFloat 6s ease-in-out infinite alternate;
 }
 
 @keyframes titleFloat {
     from { transform: translateY(0); }
-    to { transform: translateY(18px); }
+    to { transform: translateY(22px); }
 }
 
 /* ---------------------------------------------------------
@@ -57,7 +57,7 @@ body::after {
 --------------------------------------------------------- */
 #poemContainer {
     position: absolute;
-    top: 180px;
+    top: 200px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -65,66 +65,75 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   PAGE — dark glass, neon edges, no white
+   PAGE — nebula glass, cosmic fade, float transitions
 --------------------------------------------------------- */
 .page {
-    width: 80%;
-    max-width: 760px;
-    min-height: 280px;
-    padding: 50px;
-    background: rgba(0,0,0,0.85); /* BLACK glass */
-    border-radius: 22px;
-    border: 1px solid rgba(255,105,180,0.5);
-    font-size: 24px;
-    line-height: 1.8;
+    width: 82%;
+    max-width: 780px;
+    min-height: 300px;
+    padding: 55px;
+    background: rgba(0,0,0,0.85);
+    border-radius: 26px;
+    border: 1px solid rgba(180,0,255,0.45);
+    font-size: 26px;
+    line-height: 1.85;
     opacity: 0;
-    transform: translateY(60px) scale(0.92);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 0 50px rgba(255,105,180,0.25);
+    transform: translateY(80px) scale(0.88);
+    transition:
+        opacity 1.4s ease,
+        transform 1.4s ease;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 70px rgba(180,0,255,0.25);
 }
 
+/* FLOAT IN */
 .page.show {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
+/* FLOAT OUT */
+.page.fade-out {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.88);
+}
+
 /* ---------------------------------------------------------
-   NEXT BUTTON — dark neon, no white
+   NEXT BUTTON — dark nebula core
 --------------------------------------------------------- */
 #nextBtn {
     position: fixed;
-    bottom: 70px;
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 20px 48px;
-    background: #000; /* PURE BLACK */
-    color: #ff8acb;
-    border: 2px solid #ff4fa8;
-    border-radius: 18px;
+    padding: 22px 50px;
+    background: #050005;
+    color: #e8c6ff;
+    border: 2px solid #b300ff;
+    border-radius: 20px;
     font-size: 22px;
     cursor: pointer;
     z-index: 20;
     font-weight: bold;
-    box-shadow: 0 0 40px rgba(255,105,180,0.6);
+    box-shadow: 0 0 50px rgba(180,0,255,0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #nextBtn:hover {
-    transform: translateX(-50%) scale(1.12);
-    box-shadow: 0 0 70px rgba(255,105,180,1);
+    transform: translateX(-50%) scale(1.15);
+    box-shadow: 0 0 90px rgba(180,0,255,1);
 }
 
 /* ---------------------------------------------------------
-   FALLING ITEMS — bears, candy, flowers
+   FALLING ITEMS — cosmic drift
 --------------------------------------------------------- */
 .falling {
     position: fixed;
     top: -80px;
-    font-size: 42px;
-    animation: fall 5.2s linear forwards;
+    font-size: 44px;
+    animation: fall 6s linear forwards;
     z-index: 4;
-    filter: drop-shadow(0 0 20px #ff4fa8);
+    filter: drop-shadow(0 0 25px #b300ff);
 }
 
 @keyframes fall {
@@ -133,17 +142,17 @@ body::after {
         opacity: 1;
     }
     100% {
-        transform: translateY(150vh) rotate(360deg) scale(1.5);
+        transform: translateY(160vh) rotate(360deg) scale(1.6);
         opacity: 0;
     }
 }
 
 /* ---------------------------------------------------------
-   FINAL FLOWER — neon bloom
+   FINAL FLOWER — nebula bloom
 --------------------------------------------------------- */
 #finalFlower {
     position: fixed;
-    bottom: 130px;
+    bottom: 150px;
     width: 100%;
     text-align: center;
     z-index: 15;
@@ -155,20 +164,20 @@ body::after {
 
 .cssFlower {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     margin: 0 auto;
-    animation: floatUp 4.8s ease-in-out infinite, glow 3.2s infinite alternate;
+    animation: floatUp 5s ease-in-out infinite, glow 3.5s infinite alternate;
 }
 
 .cssFlower .petal {
     position: absolute;
-    width: 80px;
-    height: 130px;
-    background: radial-gradient(circle at 40% 40%, #ff9ad3, #ff4fa8);
+    width: 90px;
+    height: 150px;
+    background: radial-gradient(circle at 40% 40%, #d38aff, #b300ff);
     border-radius: 50% 50% 42% 42%;
-    top: 30px;
-    left: 60px;
+    top: 35px;
+    left: 65px;
     transform-origin: bottom center;
 }
 
@@ -181,62 +190,38 @@ body::after {
 
 .cssFlower .center {
     position: absolute;
-    width: 95px;
-    height: 95px;
-    background: radial-gradient(circle, #ffe0f5, #ff8acb);
+    width: 110px;
+    height: 110px;
+    background: radial-gradient(circle, #f5d6ff, #d38aff);
     border-radius: 50%;
-    top: 52px;
-    left: 52px;
-    box-shadow: 0 0 40px #ff4fa8;
+    top: 55px;
+    left: 55px;
+    box-shadow: 0 0 50px #b300ff;
 }
 
 @keyframes glow {
-    from { filter: drop-shadow(0 0 20px #ff69b4); }
-    to { filter: drop-shadow(0 0 60px #ff69b4); }
+    from { filter: drop-shadow(0 0 25px #b300ff); }
+    to { filter: drop-shadow(0 0 70px #b300ff); }
 }
 
 @keyframes floatUp {
     from { transform: translateY(0); }
-    to { transform: translateY(-18px); }
+    to { transform: translateY(-22px); }
 }
 
 /* ---------------------------------------------------------
-   DOWNLOAD LINK — neon, no white
+   DOWNLOAD LINK — nebula shimmer
 --------------------------------------------------------- */
 #downloadLink {
     display: block;
-    margin-top: 32px;
-    color: #ff8acb;
-    font-size: 20px;
+    margin-top: 35px;
+    color: #d38aff;
+    font-size: 22px;
     text-decoration: underline;
-    text-shadow: 0 0 20px #ff4fa8;
+    text-shadow: 0 0 25px #b300ff;
     transition: opacity 0.3s ease;
 }
 
 #downloadLink:hover {
     opacity: 0.6;
-}
-/* ---------------------------------------------------------
-   PAGE TRANSITIONS — FLOAT IN + FLOAT OUT
---------------------------------------------------------- */
-
-/* Starting state (hidden, below screen, small) */
-.page {
-    opacity: 0;
-    transform: translateY(60px) scale(0.92);
-    transition:
-        opacity 1.2s ease,
-        transform 1.2s ease;
-}
-
-/* When page becomes visible */
-.page.show {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-/* When page is leaving */
-.page.fade-out {
-    opacity: 0;
-    transform: translateY(-60px) scale(0.92);
 }
