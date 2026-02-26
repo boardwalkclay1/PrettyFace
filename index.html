@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Girl With the Pretty Face</title>
 
-    <!-- Proper stylesheet call -->
+    <!-- Cinematic Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Cinematic Title -->
-    <h1 id="title">The Girl With the Pretty Face</h1>
+    <!-- Floating Cinematic Title -->
+    <h1 id="title">THE GIRL WITH THE PRETTY FACE</h1>
 
     <!-- Poem Container -->
     <div id="poemContainer">
@@ -22,13 +22,28 @@
     <!-- Next Button -->
     <button id="nextBtn">Next Page</button>
 
-    <!-- Final Flower Section (NO IMAGE CALLS) -->
+    <!-- Final Flower Reveal -->
     <div id="finalFlower" class="hidden">
-        <div class="flower-img"></div>
-        <a id="downloadLink" href="poem.txt" download="PrettyFacePoem.txt">Save Poem</a>
+        <div class="cssFlower">
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="petal p6"></div>
+            <div class="center"></div>
+        </div>
+
+        <a id="downloadLink" href="poem.txt" download="PrettyFacePoem.txt">
+            Save Poem
+        </a>
     </div>
 
-    <!-- Script -->
+    <!-- Candy + Floating Items Layers -->
+    <div id="candyRain"></div>
+    <div id="floatingItems"></div>
+
+    <!-- Poem Engine -->
     <script src="app.js"></script>
 
 </body>
