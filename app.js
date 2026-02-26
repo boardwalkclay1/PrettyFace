@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------
-   SAFE, MILITANT, CRASH-PROOF POEM ENGINE
+   MILITANT, CRASH-PROOF, CINEMATIC POEM ENGINE
 --------------------------------------------------------- */
 
 const poemPages = [
@@ -10,13 +10,16 @@ const poemPages = [
     "Her smile wasn’t something she threw around — it was something she gave. And when she did, it felt like the room brightened a little. Not dramatically, just enough to notice.",
     "She had a softness that didn’t make her fragile. It made her real, grounded, and steady. The kind of softness people remember.",
     "Her presence wasn’t about looks alone; it was the energy she carried. A quiet strength wrapped in gentleness. A balance most people never learn.",
-    "She didn’t need to speak loudly to be heard. Her calmness did the talking for her. And somehow, that said more than words.",
+    "She didn’t need to speak loudly to be heard. Her calmness did the talking for her. And somehow that said more than words.",
     "She made ordinary moments feel a little more meaningful. Not because she tried — but because she was simply herself. And that was enough to shift the whole atmosphere.",
     "If she ever wondered whether anyone noticed her light, this app exists to say yes. Not in a dramatic way, but in a sincere one. She’s unforgettable in the quietest, sweetest way."
 ];
 
 let currentPage = 0;
 
+/* ---------------------------------------------------------
+   ELEMENT HOOKS — all optional, all guarded
+--------------------------------------------------------- */
 const poemText = document.getElementById("poemText");
 const nextBtn = document.getElementById("nextBtn");
 const candyRain = document.getElementById("candyRain");
@@ -24,54 +27,56 @@ const floatingItems = document.getElementById("floatingItems");
 const finalFlower = document.getElementById("finalFlower");
 
 /* ---------------------------------------------------------
-   SAFE PAGE RENDER
+   PAGE RENDER — cinematic fade + float
 --------------------------------------------------------- */
 function showPage() {
     if (!poemText) return;
 
     poemText.classList.remove("show");
+
     setTimeout(() => {
         poemText.textContent = poemPages[currentPage];
         poemText.classList.add("show");
-    }, 200);
+    }, 180);
 
-    dropCandy();
-    floatItem();
+    spawnCandy();
+    spawnFloat();
 }
 
 /* ---------------------------------------------------------
-   CANDY DROP
+   CANDY DROP — black‑cinema drift
 --------------------------------------------------------- */
-function dropCandy() {
+function spawnCandy() {
     if (!candyRain) return;
 
-    const candy = document.createElement("div");
-    candy.className = "falling";
-    candy.textContent = "🍬";
-    candy.style.left = Math.random() * 100 + "vw";
-    candyRain.appendChild(candy);
-
-    setTimeout(() => candy.remove(), 5000);
-}
-
-/* ---------------------------------------------------------
-   FLOATING ITEMS
---------------------------------------------------------- */
-function floatItem() {
-    if (!floatingItems) return;
-
-    const items = ["🧸", "🌸", "💐"];
     const el = document.createElement("div");
     el.className = "falling";
-    el.textContent = items[Math.floor(Math.random() * items.length)];
+    el.textContent = "🍬";
     el.style.left = Math.random() * 100 + "vw";
-    floatingItems.appendChild(el);
 
+    candyRain.appendChild(el);
     setTimeout(() => el.remove(), 5000);
 }
 
 /* ---------------------------------------------------------
-   NEXT BUTTON
+   FLOATING ITEMS — teddy, flower, bouquet
+--------------------------------------------------------- */
+function spawnFloat() {
+    if (!floatingItems) return;
+
+    const icons = ["🧸", "🌸", "💐"];
+    const el = document.createElement("div");
+
+    el.className = "falling";
+    el.textContent = icons[Math.floor(Math.random() * icons.length)];
+    el.style.left = Math.random() * 100 + "vw";
+
+    floatingItems.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+}
+
+/* ---------------------------------------------------------
+   NEXT BUTTON — page progression
 --------------------------------------------------------- */
 if (nextBtn) {
     nextBtn.addEventListener("click", () => {
@@ -89,4 +94,7 @@ if (nextBtn) {
     });
 }
 
+/* ---------------------------------------------------------
+   INITIALIZE
+--------------------------------------------------------- */
 showPage();
