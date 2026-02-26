@@ -1,227 +1,24 @@
 /* ---------------------------------------------------------
-   GLOBAL — NEBULA DRIFT (deep black, cosmic glow)
+   PAGE TRANSITIONS — FLOAT IN + FLOAT OUT
 --------------------------------------------------------- */
-body {
-    margin: 0;
-    padding: 0;
-    background: #000;
-    color: #e8c6ff; /* lavender nebula text */
-    font-family: "Helvetica", sans-serif;
-    overflow: hidden;
-    letter-spacing: 0.7px;
-    position: relative;
-}
 
-/* Cosmic grain shimmer */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background: repeating-radial-gradient(
-        circle,
-        rgba(180, 0, 255, 0.03) 0,
-        rgba(180, 0, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 5px
-    );
-    opacity: 0.07;
-    mix-blend-mode: screen;
-    z-index: 1;
-}
-
-/* ---------------------------------------------------------
-   TITLE — cosmic bloom, slow drift
---------------------------------------------------------- */
-#title {
-    text-align: center;
-    font-size: 44px;
-    margin-top: 20px;
-    letter-spacing: 10px;
-    position: fixed;
-    top: 30px;
-    width: 100%;
-    z-index: 20;
-    color: #d38aff;
-    text-shadow: 0 0 40px #b300ff, 0 0 80px #b300ff;
-    animation: titleFloat 6s ease-in-out infinite alternate;
-}
-
-@keyframes titleFloat {
-    from { transform: translateY(0); }
-    to { transform: translateY(22px); }
-}
-
-/* ---------------------------------------------------------
-   POEM CONTAINER
---------------------------------------------------------- */
-#poemContainer {
-    position: absolute;
-    top: 200px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 5;
-}
-
-/* ---------------------------------------------------------
-   PAGE — nebula glass, cosmic fade, float transitions
---------------------------------------------------------- */
+/* default state before animation */
 .page {
-    width: 82%;
-    max-width: 780px;
-    min-height: 300px;
-    padding: 55px;
-    background: rgba(0,0,0,0.85);
-    border-radius: 26px;
-    border: 1px solid rgba(180,0,255,0.45);
-    font-size: 26px;
-    line-height: 1.85;
     opacity: 0;
-    transform: translateY(80px) scale(0.88);
+    transform: translateY(60px) scale(0.92);
     transition:
-        opacity 1.4s ease,
-        transform 1.4s ease;
-    backdrop-filter: blur(18px);
-    box-shadow: 0 0 70px rgba(180,0,255,0.25);
+        opacity 1.2s ease,
+        transform 1.2s ease;
 }
 
-/* FLOAT IN */
-.page.show {
+/* float + fade IN */
+.page.page-in {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* FLOAT OUT */
-.page.fade-out {
+/* float + fade OUT */
+.page.page-out {
     opacity: 0;
-    transform: translateY(-80px) scale(0.88);
-}
-
-/* ---------------------------------------------------------
-   NEXT BUTTON — dark nebula core
---------------------------------------------------------- */
-#nextBtn {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 22px 50px;
-    background: #050005;
-    color: #e8c6ff;
-    border: 2px solid #b300ff;
-    border-radius: 20px;
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 20;
-    font-weight: bold;
-    box-shadow: 0 0 50px rgba(180,0,255,0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#nextBtn:hover {
-    transform: translateX(-50%) scale(1.15);
-    box-shadow: 0 0 90px rgba(180,0,255,1);
-}
-
-/* ---------------------------------------------------------
-   FALLING ITEMS — cosmic drift
---------------------------------------------------------- */
-.falling {
-    position: fixed;
-    top: -80px;
-    font-size: 44px;
-    animation: fall 6s linear forwards;
-    z-index: 4;
-    filter: drop-shadow(0 0 25px #b300ff);
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(160vh) rotate(360deg) scale(1.6);
-        opacity: 0;
-    }
-}
-
-/* ---------------------------------------------------------
-   FINAL FLOWER — nebula bloom
---------------------------------------------------------- */
-#finalFlower {
-    position: fixed;
-    bottom: 150px;
-    width: 100%;
-    text-align: center;
-    z-index: 15;
-}
-
-.hidden {
-    display: none;
-}
-
-.cssFlower {
-    position: relative;
-    width: 220px;
-    height: 220px;
-    margin: 0 auto;
-    animation: floatUp 5s ease-in-out infinite, glow 3.5s infinite alternate;
-}
-
-.cssFlower .petal {
-    position: absolute;
-    width: 90px;
-    height: 150px;
-    background: radial-gradient(circle at 40% 40%, #d38aff, #b300ff);
-    border-radius: 50% 50% 42% 42%;
-    top: 35px;
-    left: 65px;
-    transform-origin: bottom center;
-}
-
-.cssFlower .p1 { transform: rotate(0deg); }
-.cssFlower .p2 { transform: rotate(60deg); }
-.cssFlower .p3 { transform: rotate(120deg); }
-.cssFlower .p4 { transform: rotate(180deg); }
-.cssFlower .p5 { transform: rotate(240deg); }
-.cssFlower .p6 { transform: rotate(300deg); }
-
-.cssFlower .center {
-    position: absolute;
-    width: 110px;
-    height: 110px;
-    background: radial-gradient(circle, #f5d6ff, #d38aff);
-    border-radius: 50%;
-    top: 55px;
-    left: 55px;
-    box-shadow: 0 0 50px #b300ff;
-}
-
-@keyframes glow {
-    from { filter: drop-shadow(0 0 25px #b300ff); }
-    to { filter: drop-shadow(0 0 70px #b300ff); }
-}
-
-@keyframes floatUp {
-    from { transform: translateY(0); }
-    to { transform: translateY(-22px); }
-}
-
-/* ---------------------------------------------------------
-   DOWNLOAD LINK — nebula shimmer
---------------------------------------------------------- */
-#downloadLink {
-    display: block;
-    margin-top: 35px;
-    color: #d38aff;
-    font-size: 22px;
-    text-decoration: underline;
-    text-shadow: 0 0 25px #b300ff;
-    transition: opacity 0.3s ease;
-}
-
-#downloadLink:hover {
-    opacity: 0.6;
+    transform: translateY(-60px) scale(0.92);
 }
