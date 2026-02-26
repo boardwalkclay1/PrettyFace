@@ -4,25 +4,228 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Girl With the Pretty Face</title>
+    <style>
+        /* ---------------------------------------------------------
+           GLOBAL — ultra‑black, premium bloom, clean grain
+        --------------------------------------------------------- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #050505 0%, #000 100%);
+            color: #fff;
+            font-family: "Helvetica", sans-serif;
+            overflow: hidden;
+            letter-spacing: 0.65px;
+            position: relative;
+        }
 
-    <!-- Cinematic Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-radial-gradient(
+                circle,
+                rgba(255,255,255,0.012) 0,
+                rgba(255,255,255,0.012) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            opacity: 0.10;
+            mix-blend-mode: soft-light;
+            z-index: 3;
+        }
+
+        /* TITLE */
+        #title {
+            text-align: center;
+            font-size: 40px;
+            margin-top: 20px;
+            letter-spacing: 6px;
+            position: fixed;
+            top: 14px;
+            width: 100%;
+            z-index: 20;
+            text-shadow: 0 0 26px rgba(255, 105, 180, 0.95);
+            animation: titleFloat 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleFloat {
+            from { transform: translateY(0); }
+            to { transform: translateY(14px); }
+        }
+
+        /* POEM CONTAINER + PAGE */
+        #poemContainer {
+            position: absolute;
+            top: 160px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .page {
+            width: 80%;
+            max-width: 720px;
+            min-height: 260px;
+            padding: 46px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.10);
+            font-size: 24px;
+            line-height: 1.78;
+            opacity: 0;
+            transform: translateY(60px) scale(0.93);
+            transition: opacity 1.25s ease, transform 1.25s ease;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 55px rgba(255,255,255,0.04);
+        }
+
+        .page.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* NEXT BUTTON */
+        #nextBtn {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 20px 44px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 16px;
+            font-size: 21px;
+            cursor: pointer;
+            z-index: 20;
+            font-weight: bold;
+            box-shadow: 0 0 32px rgba(255,255,255,0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #nextBtn:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 0 55px rgba(255,255,255,1);
+        }
+
+        /* FALLING ITEMS */
+        .falling {
+            position: fixed;
+            top: -80px;
+            font-size: 40px;
+            animation: fall 5.2s linear forwards;
+            z-index: 6;
+            filter: drop-shadow(0 0 16px rgba(255,255,255,0.55));
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(140vh) rotate(360deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        #candyRain,
+        #floatingItems {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* FINAL FLOWER */
+        #finalFlower {
+            position: fixed;
+            bottom: 120px;
+            width: 100%;
+            text-align: center;
+            z-index: 15;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .cssFlower {
+            position: relative;
+            width: 190px;
+            height: 190px;
+            margin: 0 auto;
+            animation: floatUp 4.8s ease-in-out infinite, glow 3.2s infinite alternate;
+        }
+
+        .cssFlower .petal {
+            position: absolute;
+            width: 75px;
+            height: 125px;
+            background: radial-gradient(circle at 40% 40%, #ff9ad3, #ff4fa8);
+            border-radius: 50% 50% 42% 42%;
+            top: 28px;
+            left: 58px;
+            transform-origin: bottom center;
+        }
+
+        .cssFlower .p1 { transform: rotate(0deg); }
+        .cssFlower .p2 { transform: rotate(60deg); }
+        .cssFlower .p3 { transform: rotate(120deg); }
+        .cssFlower .p4 { transform: rotate(180deg); }
+        .cssFlower .p5 { transform: rotate(240deg); }
+        .cssFlower .p6 { transform: rotate(300deg); }
+
+        .cssFlower .center {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #ffe0f5, #ff8acb);
+            border-radius: 50%;
+            top: 50px;
+            left: 50px;
+            box-shadow: 0 0 30px rgba(255,105,180,0.85);
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 16px #ff69b4); }
+            to { filter: drop-shadow(0 0 50px #ff69b4); }
+        }
+
+        @keyframes floatUp {
+            from { transform: translateY(0); }
+            to { transform: translateY(-16px); }
+        }
+
+        /* DOWNLOAD LINK */
+        #downloadLink {
+            display: block;
+            margin-top: 30px;
+            color: #fff;
+            font-size: 20px;
+            text-decoration: underline;
+            text-shadow: 0 0 18px rgba(255,255,255,0.55);
+            transition: opacity 0.3s ease;
+        }
+
+        #downloadLink:hover {
+            opacity: 0.5;
+        }
+    </style>
 </head>
-
 <body>
 
-    <!-- Floating Cinematic Title -->
     <h1 id="title">THE GIRL WITH THE PRETTY FACE</h1>
 
-    <!-- Poem Container -->
     <div id="poemContainer">
-        <div id="poemPage" class="page"></div>
+        <div id="poemText" class="page"></div>
     </div>
 
-    <!-- Next Button -->
     <button id="nextBtn">Next Page</button>
 
-    <!-- Final Flower Reveal -->
     <div id="finalFlower" class="hidden">
         <div class="cssFlower">
             <div class="petal p1"></div>
@@ -33,18 +236,93 @@
             <div class="petal p6"></div>
             <div class="center"></div>
         </div>
-
-        <a id="downloadLink" href="poem.txt" download="PrettyFacePoem.txt">
-            Save Poem
-        </a>
+        <a id="downloadLink" href="poem.txt" download="PrettyFacePoem.txt">Save Poem</a>
     </div>
 
-    <!-- Candy + Floating Items Layers -->
     <div id="candyRain"></div>
     <div id="floatingItems"></div>
 
-    <!-- Poem Engine -->
-    <script src="app.js"></script>
+    <script>
+        /* ---------------------------------------------------------
+           MILITANT, CRASH-PROOF, CINEMATIC POEM ENGINE
+        --------------------------------------------------------- */
+        const poemPages = [
+            "She stood there at the Nomad counter, calm like she’d already figured out the world. Her presence didn’t ask for attention; it simply earned it. Even the air around her felt softer.",
+            "Her pretty face wasn’t loud or dramatic — it was gentle, like a quiet sunrise. The kind of beauty that doesn’t try to impress anyone. It just exists, and somehow that’s enough.",
+            "She moved with a rhythm that didn’t rush or force anything. Every gesture felt intentional without being heavy. It made people slow down without realizing why.",
+            "Her eyes carried a calm confidence, like she trusted herself even on the busiest days. There was warmth in the way she looked at the world. It made the store feel less like a store and more like a moment.",
+            "Her smile wasn’t something she threw around — it was something she gave. And when she did, it felt like the room brightened a little. Not dramatically, just enough to notice.",
+            "She had a softness that didn’t make her fragile. It made her real, grounded, and steady. The kind of softness people remember.",
+            "Her presence wasn’t about looks alone; it was the energy she carried. A quiet strength wrapped in gentleness. A balance most people never learn.",
+            "She didn’t need to speak loudly to be heard. Her calmness did the talking for her. And somehow that said more than words.",
+            "She made ordinary moments feel a little more meaningful. Not because she tried — but because she was simply herself. And that was enough to shift the whole atmosphere.",
+            "If she ever wondered whether anyone noticed her light, this app exists to say yes. Not in a dramatic way, but in a sincere one. She’s unforgettable in the quietest, sweetest way."
+        ];
 
+        let currentPage = 0;
+
+        const poemText = document.getElementById("poemText");
+        const nextBtn = document.getElementById("nextBtn");
+        const candyRain = document.getElementById("candyRain");
+        const floatingItems = document.getElementById("floatingItems");
+        const finalFlower = document.getElementById("finalFlower");
+
+        function showPage() {
+            if (!poemText) return;
+
+            poemText.classList.remove("show");
+
+            setTimeout(() => {
+                poemText.textContent = poemPages[currentPage];
+                poemText.classList.add("show");
+            }, 180);
+
+            spawnCandy();
+            spawnFloat();
+        }
+
+        function spawnCandy() {
+            if (!candyRain) return;
+
+            const el = document.createElement("div");
+            el.className = "falling";
+            el.textContent = "🍬";
+            el.style.left = Math.random() * 100 + "vw";
+
+            candyRain.appendChild(el);
+            setTimeout(() => el.remove(), 5200);
+        }
+
+        function spawnFloat() {
+            if (!floatingItems) return;
+
+            const icons = ["🧸", "🧸", "🍬", "💐"];
+            const el = document.createElement("div");
+
+            el.className = "falling";
+            el.textContent = icons[Math.floor(Math.random() * icons.length)];
+            el.style.left = Math.random() * 100 + "vw";
+
+            floatingItems.appendChild(el);
+            setTimeout(() => el.remove(), 5200);
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                currentPage++;
+
+                if (currentPage >= poemPages.length) {
+                    nextBtn.style.display = "none";
+                    if (finalFlower) {
+                        finalFlower.classList.remove("hidden");
+                    }
+                } else {
+                    showPage();
+                }
+            });
+        }
+
+        showPage();
+    </script>
 </body>
 </html>
