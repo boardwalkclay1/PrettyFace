@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------
-   FLOATING CANDY + BEARS (unchanged)
+   FLOATING CANDY + BEARS
 --------------------------------------------------------- */
 
 function spawnCandy() {
@@ -42,13 +42,16 @@ window.addEventListener("DOMContentLoaded", () => {
     const page = document.querySelector(".page");
     const nextBtn = document.getElementById("nextBtn");
 
+    // if no .page, do nothing (no crash)
+    if (!page) return;
+
     // FLOAT + FADE IN
     setTimeout(() => {
         page.classList.add("page-in");
     }, 50);
 
     // FLOAT + FADE OUT on Next Page click
-    if (nextBtn) {
+    if (nextBtn && nextBtn.href) {
         nextBtn.addEventListener("click", (e) => {
             e.preventDefault(); // stop instant navigation
 
@@ -57,7 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             setTimeout(() => {
                 window.location.href = nextBtn.href;
-            }, 900); // matches CSS timing
+            }, 900); // match CSS transition duration
         });
     }
 });
