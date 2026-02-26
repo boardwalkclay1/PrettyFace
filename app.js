@@ -1,8 +1,7 @@
 /* ---------------------------------------------------------
-   MILITANT, CINEMATIC FLOAT ENGINE (NO PAGE LOGIC)
+   FLOATING CANDY + BEARS (unchanged)
 --------------------------------------------------------- */
 
-/* Candy Rain */
 function spawnCandy() {
     const candyRain = document.getElementById("candyRain");
     if (!candyRain) return;
@@ -16,7 +15,6 @@ function spawnCandy() {
     setTimeout(() => el.remove(), 5000);
 }
 
-/* Floating Bears + Flowers */
 function spawnFloat() {
     const floatingItems = document.getElementById("floatingItems");
     if (!floatingItems) return;
@@ -32,6 +30,34 @@ function spawnFloat() {
     setTimeout(() => el.remove(), 5000);
 }
 
-/* Run animations forever */
 setInterval(spawnCandy, 1200);
 setInterval(spawnFloat, 1600);
+
+
+/* ---------------------------------------------------------
+   PAGE FLOAT + FADE ENGINE
+--------------------------------------------------------- */
+
+window.addEventListener("DOMContentLoaded", () => {
+    const page = document.querySelector(".page");
+    const nextBtn = document.getElementById("nextBtn");
+
+    // FLOAT + FADE IN
+    setTimeout(() => {
+        page.classList.add("page-in");
+    }, 50);
+
+    // FLOAT + FADE OUT on Next Page click
+    if (nextBtn) {
+        nextBtn.addEventListener("click", (e) => {
+            e.preventDefault(); // stop instant navigation
+
+            page.classList.remove("page-in");
+            page.classList.add("page-out");
+
+            setTimeout(() => {
+                window.location.href = nextBtn.href;
+            }, 900); // matches CSS timing
+        });
+    }
+});
