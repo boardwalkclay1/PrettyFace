@@ -1,10 +1,10 @@
 /* ---------------------------------------------------------
-   GLOBAL AESTHETIC — ultra‑black, cinematic bloom, clean grain
+   GLOBAL — ultra‑black, premium bloom, clean grain
 --------------------------------------------------------- */
 body {
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle at center, #0b0b0b 0%, #000 100%);
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
     color: #fff;
     font-family: "Helvetica", sans-serif;
     overflow: hidden;
@@ -12,37 +12,37 @@ body {
     position: relative;
 }
 
-/* Stronger, cleaner film grain */
+/* Film grain — smoother, cleaner, more realistic */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: url("grain.png") repeat; /* replace with your own grain file */
-    opacity: 0.12;
-    mix-blend-mode: soft-light;
-    z-index: 2;
+    background: url("grain.png") repeat;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 3;
 }
 
 /* ---------------------------------------------------------
-   TITLE — deeper glow, more cinematic float
+   TITLE — deeper glow, premium float
 --------------------------------------------------------- */
 #title {
     text-align: center;
-    font-size: 36px;
+    font-size: 38px;
     margin-top: 20px;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
     position: fixed;
-    top: 10px;
+    top: 12px;
     width: 100%;
     z-index: 20;
-    text-shadow: 0 0 18px rgba(255, 105, 180, 0.9);
-    animation: titleFloat 4s ease-in-out infinite alternate;
+    text-shadow: 0 0 22px rgba(255, 105, 180, 0.95);
+    animation: titleFloat 4.5s ease-in-out infinite alternate;
 }
 
 @keyframes titleFloat {
     from { transform: translateY(0); }
-    to { transform: translateY(10px); }
+    to { transform: translateY(12px); }
 }
 
 /* ---------------------------------------------------------
@@ -50,7 +50,7 @@ body::after {
 --------------------------------------------------------- */
 #poemContainer {
     position: absolute;
-    top: 140px;
+    top: 150px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -64,17 +64,17 @@ body::after {
     width: 80%;
     max-width: 720px;
     min-height: 260px;
-    padding: 40px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 16px;
+    padding: 42px;
+    background: rgba(255,255,255,0.035);
+    border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.12);
     font-size: 23px;
     line-height: 1.75;
     opacity: 0;
-    transform: translateY(50px) scale(0.95);
-    transition: opacity 1.1s ease, transform 1.1s ease;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 40px rgba(255,255,255,0.06);
+    transform: translateY(55px) scale(0.94);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 45px rgba(255,255,255,0.05);
 }
 
 .page.show {
@@ -87,37 +87,37 @@ body::after {
 --------------------------------------------------------- */
 #nextBtn {
     position: fixed;
-    bottom: 50px;
+    bottom: 55px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 18px 38px;
+    padding: 18px 40px;
     background: #fff;
     color: #000;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     font-size: 20px;
     cursor: pointer;
     z-index: 20;
     font-weight: bold;
-    box-shadow: 0 0 25px rgba(255,255,255,0.6);
+    box-shadow: 0 0 28px rgba(255,255,255,0.65);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #nextBtn:hover {
-    transform: translateX(-50%) scale(1.07);
-    box-shadow: 0 0 40px rgba(255,255,255,0.9);
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 0 45px rgba(255,255,255,1);
 }
 
 /* ---------------------------------------------------------
-   FALLING ITEMS — deeper shadows, smoother drift
+   FALLING ITEMS — smoother drift, deeper shadows
 --------------------------------------------------------- */
 .falling {
     position: fixed;
     top: -70px;
-    font-size: 36px;
-    animation: fall 4.8s linear forwards;
-    z-index: 5;
-    filter: drop-shadow(0 0 12px rgba(255,255,255,0.5));
+    font-size: 38px;
+    animation: fall 5s linear forwards;
+    z-index: 6;
+    filter: drop-shadow(0 0 14px rgba(255,255,255,0.55));
 }
 
 @keyframes fall {
@@ -126,35 +126,35 @@ body::after {
         opacity: 1;
     }
     100% {
-        transform: translateY(130vh) rotate(360deg) scale(1.4);
+        transform: translateY(135vh) rotate(360deg) scale(1.45);
         opacity: 0;
     }
 }
 
 /* ---------------------------------------------------------
-   FINAL FLOWER — deeper glow, more magical pulse
+   FINAL FLOWER — premium glow, magical pulse
 --------------------------------------------------------- */
 #finalFlower {
     position: fixed;
-    bottom: 100px;
+    bottom: 110px;
     width: 100%;
     text-align: center;
     z-index: 15;
 }
 
 .flower-img {
-    width: 240px;
-    animation: glow 3s infinite alternate, floatUp 4s ease-in-out infinite;
+    width: 250px;
+    animation: glow 3.2s infinite alternate, floatUp 4.5s ease-in-out infinite;
 }
 
 @keyframes glow {
-    from { filter: drop-shadow(0 0 12px #ff69b4); }
-    to { filter: drop-shadow(0 0 40px #ff69b4); }
+    from { filter: drop-shadow(0 0 14px #ff69b4); }
+    to { filter: drop-shadow(0 0 45px #ff69b4); }
 }
 
 @keyframes floatUp {
     from { transform: translateY(0); }
-    to { transform: translateY(-12px); }
+    to { transform: translateY(-14px); }
 }
 
 /* ---------------------------------------------------------
@@ -162,14 +162,14 @@ body::after {
 --------------------------------------------------------- */
 #downloadLink {
     display: block;
-    margin-top: 25px;
+    margin-top: 28px;
     color: #fff;
     font-size: 20px;
     text-decoration: underline;
-    text-shadow: 0 0 14px rgba(255,255,255,0.5);
+    text-shadow: 0 0 16px rgba(255,255,255,0.55);
     transition: opacity 0.3s ease;
 }
 
 #downloadLink:hover {
-    opacity: 0.6;
+    opacity: 0.55;
 }
