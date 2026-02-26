@@ -1,18 +1,18 @@
 /* ---------------------------------------------------------
-   GLOBAL — ultra‑black, premium bloom, clean grain
+   GLOBAL — deeper black, smoother bloom, premium grain
 --------------------------------------------------------- */
 body {
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+    background: radial-gradient(circle at center, #050505 0%, #000 100%);
     color: #fff;
     font-family: "Helvetica", sans-serif;
     overflow: hidden;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.65px;
     position: relative;
 }
 
-/* Film grain — pure CSS noise (no image needed) */
+/* Film grain — softer, more realistic, less pattern noise */
 body::after {
     content: "";
     position: fixed;
@@ -20,35 +20,35 @@ body::after {
     pointer-events: none;
     background: repeating-radial-gradient(
         circle,
-        rgba(255,255,255,0.015) 0,
-        rgba(255,255,255,0.015) 1px,
+        rgba(255,255,255,0.012) 0,
+        rgba(255,255,255,0.012) 1px,
         transparent 1px,
-        transparent 2px
+        transparent 3px
     );
-    opacity: 0.12;
-    mix-blend-mode: overlay;
+    opacity: 0.10;
+    mix-blend-mode: soft-light;
     z-index: 3;
 }
 
 /* ---------------------------------------------------------
-   TITLE — deeper glow, premium float
+   TITLE — stronger glow, smoother float
 --------------------------------------------------------- */
 #title {
     text-align: center;
-    font-size: 38px;
+    font-size: 40px;
     margin-top: 20px;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     position: fixed;
-    top: 12px;
+    top: 14px;
     width: 100%;
     z-index: 20;
-    text-shadow: 0 0 22px rgba(255, 105, 180, 0.95);
-    animation: titleFloat 4.5s ease-in-out infinite alternate;
+    text-shadow: 0 0 26px rgba(255, 105, 180, 0.95);
+    animation: titleFloat 5s ease-in-out infinite alternate;
 }
 
 @keyframes titleFloat {
     from { transform: translateY(0); }
-    to { transform: translateY(12px); }
+    to { transform: translateY(14px); }
 }
 
 /* ---------------------------------------------------------
@@ -56,7 +56,7 @@ body::after {
 --------------------------------------------------------- */
 #poemContainer {
     position: absolute;
-    top: 150px;
+    top: 160px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -70,17 +70,17 @@ body::after {
     width: 80%;
     max-width: 720px;
     min-height: 260px;
-    padding: 42px;
-    background: rgba(255,255,255,0.035);
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.12);
-    font-size: 23px;
-    line-height: 1.75;
+    padding: 46px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.10);
+    font-size: 24px;
+    line-height: 1.78;
     opacity: 0;
-    transform: translateY(55px) scale(0.94);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 45px rgba(255,255,255,0.05);
+    transform: translateY(60px) scale(0.93);
+    transition: opacity 1.25s ease, transform 1.25s ease;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 55px rgba(255,255,255,0.04);
 }
 
 .page.show {
@@ -89,29 +89,29 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   NEXT BUTTON — stronger glow, deeper contrast
+   NEXT BUTTON — cleaner, brighter, more cinematic
 --------------------------------------------------------- */
 #nextBtn {
     position: fixed;
-    bottom: 55px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 18px 40px;
+    padding: 20px 44px;
     background: #fff;
     color: #000;
     border: none;
-    border-radius: 14px;
-    font-size: 20px;
+    border-radius: 16px;
+    font-size: 21px;
     cursor: pointer;
     z-index: 20;
     font-weight: bold;
-    box-shadow: 0 0 28px rgba(255,255,255,0.65);
+    box-shadow: 0 0 32px rgba(255,255,255,0.7);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #nextBtn:hover {
-    transform: translateX(-50%) scale(1.08);
-    box-shadow: 0 0 45px rgba(255,255,255,1);
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 55px rgba(255,255,255,1);
 }
 
 /* ---------------------------------------------------------
@@ -119,11 +119,11 @@ body::after {
 --------------------------------------------------------- */
 .falling {
     position: fixed;
-    top: -70px;
-    font-size: 38px;
-    animation: fall 5s linear forwards;
+    top: -80px;
+    font-size: 40px;
+    animation: fall 5.2s linear forwards;
     z-index: 6;
-    filter: drop-shadow(0 0 14px rgba(255,255,255,0.55));
+    filter: drop-shadow(0 0 16px rgba(255,255,255,0.55));
 }
 
 @keyframes fall {
@@ -132,40 +132,40 @@ body::after {
         opacity: 1;
     }
     100% {
-        transform: translateY(135vh) rotate(360deg) scale(1.45);
+        transform: translateY(140vh) rotate(360deg) scale(1.5);
         opacity: 0;
     }
 }
 
 /* ---------------------------------------------------------
-   FINAL FLOWER — pure CSS flower, glowing, no image needed
+   FINAL FLOWER — cleaner geometry, deeper glow
 --------------------------------------------------------- */
 #finalFlower {
     position: fixed;
-    bottom: 110px;
+    bottom: 120px;
     width: 100%;
     text-align: center;
     z-index: 15;
 }
 
-/* The flower is built from circles — no PNG */
+/* CSS Flower — refined shape, smoother gradients */
 .cssFlower {
     position: relative;
-    width: 180px;
-    height: 180px;
+    width: 190px;
+    height: 190px;
     margin: 0 auto;
-    animation: floatUp 4.5s ease-in-out infinite, glow 3s infinite alternate;
+    animation: floatUp 4.8s ease-in-out infinite, glow 3.2s infinite alternate;
 }
 
 /* Petals */
 .cssFlower .petal {
     position: absolute;
-    width: 70px;
-    height: 120px;
-    background: radial-gradient(circle at 40% 40%, #ff8acb, #ff4fa8);
-    border-radius: 50% 50% 40% 40%;
-    top: 30px;
-    left: 55px;
+    width: 75px;
+    height: 125px;
+    background: radial-gradient(circle at 40% 40%, #ff9ad3, #ff4fa8);
+    border-radius: 50% 50% 42% 42%;
+    top: 28px;
+    left: 58px;
     transform-origin: bottom center;
 }
 
@@ -180,39 +180,39 @@ body::after {
 /* Center */
 .cssFlower .center {
     position: absolute;
-    width: 85px;
-    height: 85px;
-    background: radial-gradient(circle, #ffd6f0, #ff8acb);
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, #ffe0f5, #ff8acb);
     border-radius: 50%;
-    top: 48px;
-    left: 48px;
-    box-shadow: 0 0 25px rgba(255,105,180,0.8);
+    top: 50px;
+    left: 50px;
+    box-shadow: 0 0 30px rgba(255,105,180,0.85);
 }
 
 /* Glow + float */
 @keyframes glow {
-    from { filter: drop-shadow(0 0 14px #ff69b4); }
-    to { filter: drop-shadow(0 0 45px #ff69b4); }
+    from { filter: drop-shadow(0 0 16px #ff69b4); }
+    to { filter: drop-shadow(0 0 50px #ff69b4); }
 }
 
 @keyframes floatUp {
     from { transform: translateY(0); }
-    to { transform: translateY(-14px); }
+    to { transform: translateY(-16px); }
 }
 
 /* ---------------------------------------------------------
-   DOWNLOAD LINK — cleaner glow, deeper contrast
+   DOWNLOAD LINK — cleaner glow, softer fade
 --------------------------------------------------------- */
 #downloadLink {
     display: block;
-    margin-top: 28px;
+    margin-top: 30px;
     color: #fff;
     font-size: 20px;
     text-decoration: underline;
-    text-shadow: 0 0 16px rgba(255,255,255,0.55);
+    text-shadow: 0 0 18px rgba(255,255,255,0.55);
     transition: opacity 0.3s ease;
 }
 
 #downloadLink:hover {
-    opacity: 0.55;
+    opacity: 0.5;
 }
